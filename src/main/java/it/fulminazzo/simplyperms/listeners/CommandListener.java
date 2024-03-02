@@ -36,7 +36,9 @@ public class CommandListener {
 
     private boolean cannotExecute(CommandSource source, String command) {
         String cmd = getCommand(command);
-        return source instanceof Player && this.plugin.getAllowedCommands().stream().noneMatch(c -> c.equalsIgnoreCase(getCommand(cmd)));
+        if (!(source instanceof Player)) return false;
+        if (this.plugin.getProxyServer().getCommandManager().getCommandMeta(cmd) == null) return false;
+        return this.plugin.getAllowedCommands().stream().noneMatch(c -> c.equalsIgnoreCase(getCommand(cmd)));
     }
 
     private String getCommand(String raw) {
