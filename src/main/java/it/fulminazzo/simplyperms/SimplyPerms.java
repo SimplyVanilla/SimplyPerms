@@ -10,7 +10,7 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import it.fulminazzo.simplyperms.groups.Group;
 import it.fulminazzo.simplyperms.groups.GroupYAMLParser;
 import it.fulminazzo.simplyperms.users.UserYAMLParser;
-import it.fulminazzo.yamlparser.configuration.ConfigurationSection;
+import it.fulminazzo.simplyperms.utils.GroupUtils;
 import it.fulminazzo.yamlparser.configuration.FileConfiguration;
 import it.fulminazzo.yamlparser.utils.FileUtils;
 import lombok.Getter;
@@ -79,13 +79,7 @@ public class SimplyPerms {
     }
 
     private void loadGroups() {
-        final ConfigurationSection groupsSection = this.configuration.getConfigurationSection("groups");
-        if (groupsSection != null) {
-            for (final String key : groupsSection.getKeys()) {
-                ConfigurationSection groupSection = groupsSection.getConfigurationSection(key);
-                if (groupSection != null) new Group(groupSection);
-            }
-        }
+        GroupUtils.loadGroups(this.configuration);
     }
 
     private void unloadGroups() {
