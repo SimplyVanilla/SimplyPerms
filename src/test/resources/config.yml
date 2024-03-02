@@ -1,0 +1,21 @@
+###########################################################
+#               ${name} config.yml file               #
+###########################################################
+
+# The following is a list of all the allowed commands.
+# If a user tries to execute a command for which they have permission,
+# but it is not specified in this list, they will be stopped.
+allowed-commands: []
+
+# A list of groups with permissions.
+groups:
+  group1:
+    permission: undefined
+  group2:
+    permission: true
+  group3:
+    permission: false
+
+# A list of users with relative groups.
+# You can specify as many groups as you'd like.
+users: {}
