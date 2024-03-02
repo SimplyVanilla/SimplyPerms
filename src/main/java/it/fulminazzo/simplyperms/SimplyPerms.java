@@ -6,10 +6,14 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
+import it.fulminazzo.yamlparser.configuration.FileConfiguration;
+import it.fulminazzo.yamlparser.utils.FileUtils;
 import lombok.Getter;
 import org.slf4j.Logger;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Path;
 
 @Plugin(
@@ -27,8 +31,10 @@ public class SimplyPerms {
     private final Logger logger;
     private final File dataDirectory;
 
+    private FileConfiguration configuration;
+
     @Inject
-    public SimplyPerms(ProxyServer proxyServer, Logger logger, @DataDirectory Path dataDirectory) {
+    public SimplyPerms(final ProxyServer proxyServer, final Logger logger, final @DataDirectory Path dataDirectory) {
         plugin = this;
         this.proxyServer = proxyServer;
         this.logger = logger;
@@ -36,7 +42,22 @@ public class SimplyPerms {
     }
 
     @Subscribe
-    public void onProxyInitialization(ProxyInitializeEvent event) {
+    public void onProxyInitialization(final ProxyInitializeEvent event) {
+        this.configuration = loadConfiguration("config.yml");
+    }
 
+    private FileConfiguration loadConfiguration(final String configName) {
+        File file = new File(this.dataDirectory, configName);
+        if (!file.exists())
+            try {
+                InputStream stream = SimplyPerms.class.getResourceAsStream(configName);
+                if (stream == null) stream = SimplyPerms.class.getResourceAsStream("/" + configName);
+                if (stream == null) throw new NullPointerException("Could not find configuration file: " + configName);
+                FileUtils.writeToFile(file, stream);
+                stream.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        return new FileConfiguration(file);
     }
 }
