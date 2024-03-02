@@ -12,7 +12,7 @@ public class Group extends Printable {
     private static final List<Group> GROUPS = new LinkedList<>();
     @Getter
     private final String name;
-    private final Map<String, Tristate> permissions;
+    final Map<String, Tristate> permissions;
 
     public Group(final ConfigurationSection groupSection) {
         this.name = groupSection.getName();
