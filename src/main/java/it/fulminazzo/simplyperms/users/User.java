@@ -56,7 +56,7 @@ public class User extends Printable implements PermissionHolder {
     public static User getUser(final UUID uniqueId) {
         return uniqueId == null ? null : getUsers().stream()
                 .filter(g -> g.getUniqueId().equals(uniqueId))
-                .findFirst().orElse(null);
+                .findFirst().orElseGet(() -> new User(uniqueId.toString()));
     }
 
     public static List<User> getUsers() {
