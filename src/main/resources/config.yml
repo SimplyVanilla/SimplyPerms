@@ -1,0 +1,33 @@
+###########################################################
+#               ${name} config.yml file               #
+###########################################################
+
+# The following is a list of all the allowed commands.
+# If a user tries to execute a command for which they have permission,
+# but it is not specified in this list, they will be stopped.
+allowed-commands:
+  - version
+  - join
+
+# A list of groups with permissions.
+groups:
+  # The name of the group
+  default:
+    # The permissions of the group.
+    minecraft.join: false
+    minecraft.test: true
+
+  admin:
+    minecraft.join: true
+    # By default, every permission is set to false,
+    # however, if a permission was previously set to true,
+    # and a higher group specifies it as false, then it will be negated.
+    minecraft.test: false
+
+# A list of users with relative groups.
+# You can specify as many groups as you'd like.
+users:
+  2d509a28-31db-41ff-81c4-008b13209e96:
+    - admin
+  e05784e9-36d9-467a-94fc-69aa2ba87bd0:
+    - admin
