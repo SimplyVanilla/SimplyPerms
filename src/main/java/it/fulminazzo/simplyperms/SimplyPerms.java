@@ -9,6 +9,7 @@ import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import it.fulminazzo.simplyperms.groups.Group;
 import it.fulminazzo.simplyperms.groups.GroupYAMLParser;
+import it.fulminazzo.simplyperms.listeners.CommandListener;
 import it.fulminazzo.simplyperms.users.UserYAMLParser;
 import it.fulminazzo.simplyperms.utils.GroupUtils;
 import it.fulminazzo.yamlparser.configuration.FileConfiguration;
@@ -21,7 +22,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 @Plugin(
@@ -59,6 +59,7 @@ public class SimplyPerms {
         this.configuration = loadConfiguration("config.yml");
 
         loadGroups();
+        this.proxyServer.getEventManager().register(this, new CommandListener(this));
     }
 
     @Subscribe
