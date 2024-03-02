@@ -7,6 +7,8 @@ import com.velocitypowered.api.event.command.PlayerAvailableCommandsEvent;
 import com.velocitypowered.api.event.player.TabCompleteEvent;
 import com.velocitypowered.api.proxy.Player;
 import it.fulminazzo.simplyperms.SimplyPerms;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 
 public class CommandListener {
     private final SimplyPerms plugin;
@@ -17,8 +19,13 @@ public class CommandListener {
 
     @Subscribe
     public void on(CommandExecuteEvent event) {
-        if (cannotExecute(event.getCommandSource(), event.getCommand()))
+        String command = getCommand(event.getCommand());
+        if (cannotExecute(event.getCommandSource(), command)) {
             event.setResult(CommandExecuteEvent.CommandResult.denied());
+            event.getCommandSource().sendMessage(Component
+                    .translatable("velocity.command.command-does-not-exist")
+                    .color(NamedTextColor.RED));
+        }
     }
 
     @Subscribe
