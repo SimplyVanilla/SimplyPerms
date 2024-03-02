@@ -3,10 +3,13 @@ package it.fulminazzo.simplyperms;
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
+import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
+import it.fulminazzo.simplyperms.groups.Group;
 import it.fulminazzo.simplyperms.groups.GroupYAMLParser;
+import it.fulminazzo.yamlparser.configuration.ConfigurationSection;
 import it.fulminazzo.yamlparser.configuration.FileConfiguration;
 import it.fulminazzo.yamlparser.utils.FileUtils;
 import lombok.Getter;
@@ -47,8 +50,15 @@ public class SimplyPerms {
     }
 
     @Subscribe
-    public void onProxyInitialization(final ProxyInitializeEvent event) {
+    public void onEnable(final ProxyInitializeEvent event) {
         this.configuration = loadConfiguration("config.yml");
+
+        loadGroups();
+    }
+
+    @Subscribe
+    public void onDisable(final ProxyShutdownEvent event) {
+        unloadGroups();
     }
 
     private FileConfiguration loadConfiguration(final String configName) {
@@ -64,5 +74,19 @@ public class SimplyPerms {
                 throw new RuntimeException(e);
             }
         return new FileConfiguration(file);
+    }
+
+    private void loadGroups() {
+        final ConfigurationSection groupsSection = this.configuration.getConfigurationSection("groups");
+        if (groupsSection != null) {
+            for (final String key : groupsSection.getKeys()) {
+                ConfigurationSection groupSection = groupsSection.getConfigurationSection(key);
+                if (groupSection != null) new Group(groupSection);
+            }
+        }
+    }
+
+    private void unloadGroups() {
+        Group.clearGroups();
     }
 }
