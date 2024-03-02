@@ -9,6 +9,7 @@ import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import it.fulminazzo.simplyperms.groups.Group;
 import it.fulminazzo.simplyperms.groups.GroupYAMLParser;
+import it.fulminazzo.simplyperms.users.UserYAMLParser;
 import it.fulminazzo.yamlparser.configuration.ConfigurationSection;
 import it.fulminazzo.yamlparser.configuration.FileConfiguration;
 import it.fulminazzo.yamlparser.utils.FileUtils;
@@ -39,6 +40,7 @@ public class SimplyPerms {
 
     static {
         FileConfiguration.addParsers(new GroupYAMLParser());
+        FileConfiguration.addParsers(new UserYAMLParser());
     }
 
     @Inject
