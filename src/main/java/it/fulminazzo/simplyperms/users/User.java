@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class User extends Printable implements PermissionHolder {
     private static final List<User> USERS = new LinkedList<>();
     private final UUID uniqueId;
-    Set<String> groups;
+    Set<String> groups = new LinkedHashSet<>();
 
     public User(final String rawId) {
         try {
