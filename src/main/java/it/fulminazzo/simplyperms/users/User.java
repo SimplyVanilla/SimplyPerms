@@ -46,6 +46,7 @@ public class User extends Printable implements PermissionHolder {
      * @return the groups
      */
     public Set<Group> getGroups() {
+        this.groups.add("default");
         return this.groups.stream()
                 .map(Group::getGroup)
                 .filter(Objects::nonNull)
