@@ -65,6 +65,7 @@ public class SimplyPerms {
     @Subscribe
     public void onDisable(final ProxyShutdownEvent event) {
         unloadGroups();
+        User.clearUsers();
     }
 
     public List<String> getAllowedCommands() {
