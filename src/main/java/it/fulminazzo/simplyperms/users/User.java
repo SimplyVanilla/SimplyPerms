@@ -31,7 +31,7 @@ public class User extends Printable implements PermissionHolder {
                 .map(g -> g.getPermissionState(permission))
                 .filter(s -> s != Tristate.UNDEFINED)
                 .findFirst().orElse(Tristate.FALSE)
-                .equals(Tristate.UNDEFINED);
+                .equals(Tristate.TRUE);
     }
 
     @Override
