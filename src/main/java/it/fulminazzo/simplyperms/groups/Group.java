@@ -44,6 +44,12 @@ public class Group extends Printable implements PermissionHolder {
         return this.permissions.keySet();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Group) return this.name.equalsIgnoreCase(((Group) obj).getName());
+        return super.equals(obj);
+    }
+
     public static Group getGroup(final String name) {
         return name == null ? null : getGroups().stream()
                 .filter(g -> g.getName().equalsIgnoreCase(name))
