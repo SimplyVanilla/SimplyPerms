@@ -24,4 +24,20 @@ class UserTest extends GroupedTest {
         assertEquals(expected, user.groups);
         assertIterableEquals(expected, user.groups);
     }
+
+    @Test
+    void testHasPermission() {
+        User user = new User(UUID.randomUUID().toString());
+        user.groups = new HashSet<>();
+        assertFalse(user.hasPermission("permission"), "User should not have permission when no group is specified.");
+
+        user.groups.add(Group.getGroup("group1").getName());
+        assertFalse(user.hasPermission("permission"), "User should not have permission when in first group.");
+
+        user.groups.add(Group.getGroup("group2").getName());
+        assertTrue(user.hasPermission("permission"), "User should have permission when in second group.");
+
+        user.groups.add(Group.getGroup("group3").getName());
+        assertFalse(user.hasPermission("permission"), "User should not have permission when in first group.");
+    }
 }
