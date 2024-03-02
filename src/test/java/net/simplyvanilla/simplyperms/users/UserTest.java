@@ -1,7 +1,7 @@
-package it.fulminazzo.simplyperms.users;
+package net.simplyvanilla.simplyperms.users;
 
-import it.fulminazzo.simplyperms.GroupedTest;
-import it.fulminazzo.simplyperms.groups.Group;
+import net.simplyvanilla.simplyperms.GroupedTest;
+import net.simplyvanilla.simplyperms.groups.Group;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;

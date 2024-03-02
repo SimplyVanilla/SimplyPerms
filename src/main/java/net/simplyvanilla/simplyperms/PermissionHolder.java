@@ -1,4 +1,4 @@
-package it.fulminazzo.simplyperms;
+package net.simplyvanilla.simplyperms;
 
 import com.velocitypowered.api.permission.Tristate;
 

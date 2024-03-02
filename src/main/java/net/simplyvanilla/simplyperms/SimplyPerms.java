@@ -1,4 +1,4 @@
-package it.fulminazzo.simplyperms;
+package net.simplyvanilla.simplyperms;
 
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.Subscribe;
@@ -8,12 +8,12 @@ import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
-import it.fulminazzo.simplyperms.groups.Group;
-import it.fulminazzo.simplyperms.groups.GroupYAMLParser;
-import it.fulminazzo.simplyperms.listeners.CommandListener;
-import it.fulminazzo.simplyperms.users.User;
-import it.fulminazzo.simplyperms.users.UserYAMLParser;
-import it.fulminazzo.simplyperms.utils.GroupUtils;
+import net.simplyvanilla.simplyperms.groups.Group;
+import net.simplyvanilla.simplyperms.groups.GroupYAMLParser;
+import net.simplyvanilla.simplyperms.listeners.CommandListener;
+import net.simplyvanilla.simplyperms.users.User;
+import net.simplyvanilla.simplyperms.users.UserYAMLParser;
+import net.simplyvanilla.simplyperms.utils.GroupUtils;
 import it.fulminazzo.yamlparser.configuration.ConfigurationSection;
 import it.fulminazzo.yamlparser.configuration.FileConfiguration;
 import it.fulminazzo.yamlparser.utils.FileUtils;
@@ -31,8 +31,9 @@ import java.util.List;
         id = "simplyperms",
         name = "SimplyPerms",
         version = "1.0",
-        description = "A simple plugin to manage permissions in your server via config.yml. Supports only Velocity.",
-        authors = {"Fulminazzo"}
+        url = "https://github.com/SimplyVanilla/SimplyPerms",
+        description = "A simple Velocity plugin to manage permissions on your server via config.yml.",
+        authors = {"Simply Vanilla"}
 )
 @Getter
 public class SimplyPerms {

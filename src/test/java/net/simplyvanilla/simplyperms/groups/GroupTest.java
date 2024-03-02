@@ -1,6 +1,6 @@
-package it.fulminazzo.simplyperms.groups;
+package net.simplyvanilla.simplyperms.groups;
 
-import it.fulminazzo.simplyperms.GroupedTest;
+import net.simplyvanilla.simplyperms.GroupedTest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 

@@ -1,4 +1,4 @@
-package it.fulminazzo.simplyperms.listeners;
+package net.simplyvanilla.simplyperms.listeners;
 
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.event.Subscribe;
@@ -6,7 +6,7 @@ import com.velocitypowered.api.event.command.CommandExecuteEvent;
 import com.velocitypowered.api.event.command.PlayerAvailableCommandsEvent;
 import com.velocitypowered.api.event.player.TabCompleteEvent;
 import com.velocitypowered.api.proxy.Player;
-import it.fulminazzo.simplyperms.SimplyPerms;
+import net.simplyvanilla.simplyperms.SimplyPerms;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 

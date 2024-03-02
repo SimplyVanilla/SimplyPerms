@@ -1,4 +1,4 @@
-package it.fulminazzo.simplyperms.groups;
+package net.simplyvanilla.simplyperms.groups;
 
 import com.velocitypowered.api.permission.Tristate;
 import it.fulminazzo.fulmicollection.interfaces.functions.BiFunctionException;

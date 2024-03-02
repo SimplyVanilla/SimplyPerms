@@ -1,6 +1,6 @@
-package it.fulminazzo.simplyperms.utils;
+package net.simplyvanilla.simplyperms.utils;
 
-import it.fulminazzo.simplyperms.groups.Group;
+import net.simplyvanilla.simplyperms.groups.Group;
 import it.fulminazzo.yamlparser.configuration.ConfigurationSection;
 import it.fulminazzo.yamlparser.configuration.FileConfiguration;
 
