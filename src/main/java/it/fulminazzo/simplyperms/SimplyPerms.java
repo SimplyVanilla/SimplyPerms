@@ -1,11 +1,12 @@
 package it.fulminazzo.simplyperms;
 
 import com.google.inject.Inject;
-import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.Subscribe;
+import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
+import it.fulminazzo.simplyperms.groups.GroupYAMLParser;
 import it.fulminazzo.yamlparser.configuration.FileConfiguration;
 import it.fulminazzo.yamlparser.utils.FileUtils;
 import lombok.Getter;
@@ -32,6 +33,10 @@ public class SimplyPerms {
     private final File dataDirectory;
 
     private FileConfiguration configuration;
+
+    static {
+        FileConfiguration.addParsers(new GroupYAMLParser());
+    }
 
     @Inject
     public SimplyPerms(final ProxyServer proxyServer, final Logger logger, final @DataDirectory Path dataDirectory) {
