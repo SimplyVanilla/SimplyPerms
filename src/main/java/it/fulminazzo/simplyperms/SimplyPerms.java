@@ -20,6 +20,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 @Plugin(
         id = "simplyperms",
@@ -61,6 +64,12 @@ public class SimplyPerms {
     @Subscribe
     public void onDisable(final ProxyShutdownEvent event) {
         unloadGroups();
+    }
+
+    public List<String> getAllowedCommands() {
+        List<String> commands = this.configuration.getStringList("allowed-commands");
+        if (commands == null) commands = new ArrayList<>();
+        return commands;
     }
 
     private FileConfiguration loadConfiguration(final String configName) {
