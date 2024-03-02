@@ -1,7 +1,7 @@
 package it.fulminazzo.simplyperms;
 
 import it.fulminazzo.simplyperms.groups.Group;
-import it.fulminazzo.yamlparser.configuration.ConfigurationSection;
+import it.fulminazzo.simplyperms.utils.GroupUtils;
 import it.fulminazzo.yamlparser.configuration.FileConfiguration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,12 +30,6 @@ public abstract class GroupedTest {
     public static void loadGroups() {
         FileConfiguration configuration = new FileConfiguration("build/resources/test/config.yml");
 
-        final ConfigurationSection groupsSection = configuration.getConfigurationSection("groups");
-        if (groupsSection != null) {
-            for (final String key : groupsSection.getKeys()) {
-                ConfigurationSection groupSection = groupsSection.getConfigurationSection(key);
-                if (groupSection != null) new Group(groupSection);
-            }
-        }
+        GroupUtils.loadGroups(configuration);
     }
 }
