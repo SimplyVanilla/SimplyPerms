@@ -23,6 +23,11 @@ jobs:
       - name: Build jar
         run: make
 
+      - name: Report coverage
+        run: make coveralls
+        env: # Or as an environment variable
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
