@@ -1,4 +1,4 @@
-package it.fulminazzo.simplyperms;
+package it.fulminazzo.simplyperms.groups;
 
 import com.velocitypowered.api.permission.Tristate;
 import it.fulminazzo.fulmicollection.objects.Printable;
