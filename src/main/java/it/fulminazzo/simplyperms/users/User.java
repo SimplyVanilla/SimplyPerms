@@ -28,7 +28,6 @@ public class User extends Printable implements PermissionHolder {
     @Override
     public boolean hasPermission(final String permission) {
         return getGroups().stream()
-                .sorted(Collections.reverseOrder())
                 .map(g -> g.getPermissionState(permission))
                 .filter(s -> s != Tristate.UNDEFINED)
                 .findFirst().orElse(Tristate.FALSE)
@@ -40,11 +39,18 @@ public class User extends Printable implements PermissionHolder {
         return getGroups().stream().flatMap(g -> g.getPermissions().stream()).collect(Collectors.toSet());
     }
 
+    /**
+     * Returns the corresponding set of groups of the user,
+     * sorted from higher to lower weight.
+     *
+     * @return the groups
+     */
     public Set<Group> getGroups() {
         return this.groups.stream()
                 .map(Group::getGroup)
                 .filter(Objects::nonNull)
-                .collect(Collectors.toSet());
+                .sorted(Comparator.comparing(g -> -Group.getWeight(g)))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     public static User getUser(final UUID uniqueId) {
