@@ -50,6 +50,10 @@ public class Group extends Printable implements PermissionHolder {
         return super.equals(obj);
     }
 
+    public static Group getDefaultGroup() {
+        return getGroup("default");
+    }
+
     public static Group getGroup(final String name) {
         return name == null ? null : getGroups().stream()
                 .filter(g -> g.getName().equalsIgnoreCase(name))
