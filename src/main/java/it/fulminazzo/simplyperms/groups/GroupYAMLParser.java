@@ -11,8 +11,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class GroupYAMLParser extends YAMLParser<Group> {
 
-    public GroupYAMLParser(final @NotNull Class<Group> groupClass) {
-        super(groupClass);
+    public GroupYAMLParser() {
+        super(Group.class);
     }
 
     @Override
