@@ -27,11 +27,14 @@ public class User extends Printable implements PermissionHolder {
 
     @Override
     public boolean hasPermission(final String permission) {
+        return getPermissionState(permission).equals(Tristate.TRUE);
+    }
+
+    @Override
+    public Tristate getPermissionState(String permission) {
         return getGroups().stream()
                 .map(g -> g.getPermissionState(permission))
-                .filter(s -> s != Tristate.UNDEFINED)
-                .findFirst().orElse(Tristate.FALSE)
-                .equals(Tristate.TRUE);
+                .findFirst().orElse(Tristate.UNDEFINED);
     }
 
     @Override
