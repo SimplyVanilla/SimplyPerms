@@ -2,13 +2,14 @@ package it.fulminazzo.simplyperms.groups;
 
 import com.velocitypowered.api.permission.Tristate;
 import it.fulminazzo.fulmicollection.objects.Printable;
+import it.fulminazzo.simplyperms.PermissionHolder;
 import it.fulminazzo.simplyperms.utils.TristateUtils;
 import it.fulminazzo.yamlparser.configuration.ConfigurationSection;
 import lombok.Getter;
 
 import java.util.*;
 
-public class Group extends Printable {
+public class Group extends Printable implements PermissionHolder {
     private static final List<Group> GROUPS = new LinkedList<>();
     @Getter
     private final String name;
@@ -27,10 +28,12 @@ public class Group extends Printable {
         GROUPS.add(this);
     }
 
+    @Override
     public boolean hasPermission(final String permission) {
         return permission != null && this.permissions.getOrDefault(permission, Tristate.UNDEFINED).equals(Tristate.TRUE);
     }
 
+    @Override
     public Set<String> getPermissions() {
         return this.permissions.keySet();
     }
