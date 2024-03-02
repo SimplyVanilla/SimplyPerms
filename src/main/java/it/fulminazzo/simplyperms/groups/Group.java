@@ -20,7 +20,8 @@ public class Group extends Printable {
 
         for (final String key : groupSection.getKeys()) {
             final String value = groupSection.getString(key);
-            this.permissions.put(key.toLowerCase(), TristateUtils.fromString(value));
+            this.permissions.put(key.toLowerCase().replace("\\.", "."),
+                    TristateUtils.fromString(value));
         }
 
         GROUPS.add(this);

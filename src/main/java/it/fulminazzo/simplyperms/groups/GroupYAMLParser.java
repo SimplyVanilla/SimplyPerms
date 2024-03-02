@@ -33,7 +33,7 @@ public class GroupYAMLParser extends YAMLParser<Group> {
             ConfigurationSection section = c.createSection(s);
             for (final String perm : g.permissions.keySet()) {
                 Tristate tristate = g.permissions.get(perm);
-                section.set(perm, tristate.equals(Tristate.TRUE));
+                section.set(perm.replace(".", "\\."), tristate.equals(Tristate.TRUE));
             }
         };
     }
