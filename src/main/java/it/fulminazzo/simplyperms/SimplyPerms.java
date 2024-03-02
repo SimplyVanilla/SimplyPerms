@@ -14,6 +14,7 @@ import it.fulminazzo.simplyperms.listeners.CommandListener;
 import it.fulminazzo.simplyperms.users.User;
 import it.fulminazzo.simplyperms.users.UserYAMLParser;
 import it.fulminazzo.simplyperms.utils.GroupUtils;
+import it.fulminazzo.yamlparser.configuration.ConfigurationSection;
 import it.fulminazzo.yamlparser.configuration.FileConfiguration;
 import it.fulminazzo.yamlparser.utils.FileUtils;
 import lombok.Getter;
@@ -61,13 +62,15 @@ public class SimplyPerms {
         this.configuration = loadConfiguration("config.yml");
 
         loadGroups();
+        loadUsers();
+
         this.proxyServer.getEventManager().register(this, new CommandListener(this));
     }
 
     @Subscribe
     public void onDisable(final ProxyShutdownEvent event) {
         unloadGroups();
-        User.clearUsers();
+        unloadUsers();
     }
 
     @Subscribe
@@ -100,7 +103,19 @@ public class SimplyPerms {
         GroupUtils.loadGroups(this.configuration);
     }
 
+    private void loadUsers() {
+        final ConfigurationSection usersSection = this.configuration.getConfigurationSection("users");
+        if (usersSection != null)
+            for (final String key : usersSection.getKeys()) {
+                usersSection.get(key, User.class);
+            }
+    }
+
     private void unloadGroups() {
         Group.clearGroups();
+    }
+
+    private void unloadUsers() {
+        User.clearUsers();
     }
 }
