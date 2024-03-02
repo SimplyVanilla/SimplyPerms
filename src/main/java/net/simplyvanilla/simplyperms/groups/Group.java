@@ -1,9 +1,9 @@
-package it.fulminazzo.simplyperms.groups;
+package net.simplyvanilla.simplyperms.groups;
 
 import com.velocitypowered.api.permission.Tristate;
 import it.fulminazzo.fulmicollection.objects.Printable;
-import it.fulminazzo.simplyperms.PermissionHolder;
-import it.fulminazzo.simplyperms.utils.TristateUtils;
+import net.simplyvanilla.simplyperms.PermissionHolder;
+import net.simplyvanilla.simplyperms.utils.TristateUtils;
 import it.fulminazzo.yamlparser.configuration.ConfigurationSection;
 import lombok.Getter;
 

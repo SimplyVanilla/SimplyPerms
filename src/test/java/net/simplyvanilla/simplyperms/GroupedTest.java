@@ -1,7 +1,7 @@
-package it.fulminazzo.simplyperms;
+package net.simplyvanilla.simplyperms;
 
-import it.fulminazzo.simplyperms.groups.Group;
-import it.fulminazzo.simplyperms.utils.GroupUtils;
+import net.simplyvanilla.simplyperms.groups.Group;
+import net.simplyvanilla.simplyperms.utils.GroupUtils;
 import it.fulminazzo.yamlparser.configuration.FileConfiguration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

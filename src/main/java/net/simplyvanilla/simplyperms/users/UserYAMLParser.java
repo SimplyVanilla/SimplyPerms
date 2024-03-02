@@ -1,4 +1,4 @@
-package it.fulminazzo.simplyperms.users;
+package net.simplyvanilla.simplyperms.users;
 
 import it.fulminazzo.fulmicollection.interfaces.functions.BiFunctionException;
 import it.fulminazzo.fulmicollection.interfaces.functions.TriConsumer;

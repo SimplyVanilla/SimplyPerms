@@ -1,10 +1,16 @@
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.12.2'
 }
 
-group = 'it.fulminazzo'
-version = '1.1'
+group = 'net.simplyvanilla'
+version = '0.1.0'
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+}
 
 repositories {
     mavenCentral()
@@ -34,6 +40,20 @@ test {
     useJUnitPlatform()
 }
 
+jacoco {
+    toolVersion = '0.8.11' // specify the desired version
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
+
+coveralls {
+    jacocoReportPath 'build/reports/jacoco/test/jacocoTestReport.xml'
+}
+
 shadowJar {
     exclude("META-INF/**")
     dependencies {
@@ -45,7 +65,7 @@ shadowJar {
 }
 
 jar {
-    enabled = true // Required for sub projects depending on sub projects
+    enabled = false // Required for sub projects depending on sub projects
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     archiveFileName = "${project.name}-${project.version}-original.jar"
     dependsOn(shadowJar)

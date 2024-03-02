@@ -1,11 +1,11 @@
-package it.fulminazzo.simplyperms;
+package net.simplyvanilla.simplyperms;
 
 import com.velocitypowered.api.permission.PermissionFunction;
 import com.velocitypowered.api.permission.PermissionProvider;
 import com.velocitypowered.api.permission.PermissionSubject;
 import com.velocitypowered.api.permission.Tristate;
 import com.velocitypowered.api.proxy.Player;
-import it.fulminazzo.simplyperms.users.User;
+import net.simplyvanilla.simplyperms.users.User;
 
 import java.util.UUID;
 
