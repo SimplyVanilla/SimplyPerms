@@ -2,6 +2,7 @@ package it.fulminazzo.simplyperms;
 
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.Subscribe;
+import com.velocitypowered.api.event.permission.PermissionsSetupEvent;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Plugin;
@@ -10,6 +11,7 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import it.fulminazzo.simplyperms.groups.Group;
 import it.fulminazzo.simplyperms.groups.GroupYAMLParser;
 import it.fulminazzo.simplyperms.listeners.CommandListener;
+import it.fulminazzo.simplyperms.users.User;
 import it.fulminazzo.simplyperms.users.UserYAMLParser;
 import it.fulminazzo.simplyperms.utils.GroupUtils;
 import it.fulminazzo.yamlparser.configuration.FileConfiguration;
@@ -66,6 +68,11 @@ public class SimplyPerms {
     public void onDisable(final ProxyShutdownEvent event) {
         unloadGroups();
         User.clearUsers();
+    }
+
+    @Subscribe
+    public void on(PermissionsSetupEvent event) {
+        event.setProvider(new SimplePermProvider());
     }
 
     public List<String> getAllowedCommands() {
