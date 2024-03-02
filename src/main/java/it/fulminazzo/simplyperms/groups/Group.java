@@ -50,6 +50,12 @@ public class Group extends Printable implements PermissionHolder {
                 .findFirst().orElse(null);
     }
 
+    public static int getWeight(final Group group) {
+        for (int i = 0; i < GROUPS.size(); i++)
+            if (GROUPS.get(i).equals(group)) return i;
+        return -1;
+    }
+
     public static List<Group> getGroups() {
         return new LinkedList<>(GROUPS);
     }
