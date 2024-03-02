@@ -33,6 +33,7 @@ public class Group extends Printable implements PermissionHolder {
         return permission != null && getPermissionState(permission).equals(Tristate.TRUE);
     }
 
+    @Override
     public Tristate getPermissionState(final String permission) {
         Tristate tristate = this.permissions.getOrDefault(permission, Tristate.UNDEFINED);
         if (tristate == null) tristate = this.permissions.put(permission, Tristate.UNDEFINED);
