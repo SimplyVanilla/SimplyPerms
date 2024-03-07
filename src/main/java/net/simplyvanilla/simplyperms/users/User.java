@@ -64,6 +64,7 @@ public class User extends Printable implements PermissionHolder {
     }
 
     public static List<User> getUsers() {
+        USERS.removeIf(Objects::isNull);
         return new LinkedList<>(USERS);
     }
 
