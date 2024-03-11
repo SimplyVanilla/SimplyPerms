@@ -12,6 +12,10 @@ public class UsersManager {
         this.users = new LinkedList<>();
     }
 
+    public void addUser(User user) {
+        this.users.add(user);
+    }
+
     public User getUser(final UUID uniqueId) {
         return uniqueId == null ? null : getUsers().stream()
             .filter(g -> g.getUniqueId().equals(uniqueId))
