@@ -10,18 +10,24 @@ import net.simplyvanilla.simplyperms.users.User;
 import java.util.UUID;
 
 public class SimplePermProvider implements PermissionProvider {
-    @Override
-    public PermissionFunction createFunction(final PermissionSubject subject) {
-        return new SimplePermFunction(subject);
+    protected final SimplyPerms plugin;
+
+    public SimplePermProvider(SimplyPerms plugin) {
+        this.plugin = plugin;
     }
 
-    private record SimplePermFunction(PermissionSubject subject) implements PermissionFunction {
+    @Override
+    public PermissionFunction createFunction(final PermissionSubject subject) {
+        return new SimplePermFunction(this.plugin, subject);
+    }
+
+    private record SimplePermFunction(SimplyPerms plugin, PermissionSubject subject) implements PermissionFunction {
 
         @Override
         public Tristate getPermissionValue(final String permission) {
             if (this.subject instanceof Player) {
                 UUID uuid = ((Player) this.subject).getUniqueId();
-                User user = User.getUser(uuid);
+                User user = this.plugin.getUsersManager().getUser(uuid);
                 return user.getPermissionState(permission);
             }
             return Tristate.TRUE;
