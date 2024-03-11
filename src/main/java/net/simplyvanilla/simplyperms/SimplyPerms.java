@@ -112,7 +112,7 @@ public class SimplyPerms {
         final ConfigurationSection usersSection = this.configuration.getConfigurationSection("users");
         if (usersSection != null)
             for (final String key : usersSection.getKeys()) {
-                usersSection.get(key, User.class);
+                this.usersManager.addUser(usersSection.get(key, User.class));
             }
     }
 
@@ -121,6 +121,6 @@ public class SimplyPerms {
     }
 
     private void unloadUsers() {
-        User.clearUsers();
+        this.usersManager.clearUsers();
     }
 }
