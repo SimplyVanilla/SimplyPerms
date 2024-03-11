@@ -31,8 +31,12 @@ public class CommandListener {
     @Subscribe
     @SuppressWarnings("UnstableApiUsage")
     public void on(PlayerAvailableCommandsEvent event) {
-        event.getRootNode().getChildren().removeIf((commandNode) ->
+        try {
+            event.getRootNode().getChildren().removeIf((commandNode) ->
                 cannotExecute(event.getPlayer(), commandNode.getName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Subscribe
