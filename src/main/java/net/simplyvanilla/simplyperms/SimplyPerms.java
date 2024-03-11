@@ -80,7 +80,7 @@ public class SimplyPerms {
 
     @Subscribe
     public void on(PermissionsSetupEvent event) {
-        event.setProvider(new SimplePermProvider());
+        event.setProvider(new SimplePermProvider(this));
     }
 
     public List<String> getAllowedCommands() {
