@@ -13,6 +13,7 @@ import net.simplyvanilla.simplyperms.groups.GroupYAMLParser;
 import net.simplyvanilla.simplyperms.listeners.CommandListener;
 import net.simplyvanilla.simplyperms.users.User;
 import net.simplyvanilla.simplyperms.users.UserYAMLParser;
+import net.simplyvanilla.simplyperms.users.UsersManager;
 import net.simplyvanilla.simplyperms.utils.GroupUtils;
 import it.fulminazzo.yamlparser.configuration.ConfigurationSection;
 import it.fulminazzo.yamlparser.configuration.FileConfiguration;
@@ -44,6 +45,7 @@ public class SimplyPerms {
     private final File dataDirectory;
 
     private FileConfiguration configuration;
+    private UsersManager usersManager;
 
     static {
         FileConfiguration.addParsers(new GroupYAMLParser());
@@ -61,6 +63,8 @@ public class SimplyPerms {
     @Subscribe
     public void onEnable(final ProxyInitializeEvent event) {
         this.configuration = loadConfiguration("config.yml");
+
+        this.usersManager = new UsersManager();
 
         loadGroups();
         loadUsers();
