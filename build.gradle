@@ -57,7 +57,7 @@ coveralls {
 shadowJar {
     exclude("META-INF/**")
     dependencies {
-        exclude(dependency('org.yaml:snakeyaml:2.2'))
+        exclude(dependency('org.yaml:snakeyaml:2.3'))
     }
     relocate("it.fulminazzo.yamlparser", "it.fulminazzo.simplyperms")
     relocate("it.fulminazzo.fulmicollection", "it.fulminazzo.simplyperms")
